@@ -1,11 +1,20 @@
-[![Build Status](https://travis-ci.org/LoyolaChicagoCode/hello-java.svg?branch=master)](https://travis-ci.org/LoyolaChicagoCode/hello-java)
+#cs371f18p1a Topwords
 
-This build will always fail because it has 2 examples of failing tests:
-one based on the source code, and one based on an incorrect test.
+@author Alejandro Herrle
 
-# Learning Objectives
+This build is a work in progress
 
-* Simple hello world example
+    # Learning Objectives
+
+* Transition from imperative object-oriented and scripting languages to Scala ("Scala as a better Java")
+* Functional versus nonfunctional requirements
+* An understanding of
+    * stream processing
+    * pipes and filters architecture
+    * Observer design pattern
+    * time/space complexity and scalability
+    * separation of processing and I/O concerns
+    * test-driven development (TDD)
 * Experience with Git source code management
 * Building with SBT
 * Automated unit testing with JUnit
@@ -51,9 +60,9 @@ This allows passing command-line arguments directly:
 On Linux or Mac OS X:
 
     $ sbt stage
-    $ ./target/universal/stage/bin/hello-java arg1 arg2 arg3
+    $ ./target/universal/stage/bin/topwords arg1 arg2 arg3
 
 On Windows:
 
     > sbt stage
-    > .\target\universal\stage\bin\hello-java arg1 arg2 arg3
+    > .\target\universal\stage\bin\topwords arg1 arg2 arg3
