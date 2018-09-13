@@ -1,4 +1,4 @@
-name := "hello-java"
+name := "topwords"
 
 version := "0.1"
 
