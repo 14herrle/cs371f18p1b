@@ -1,21 +1,15 @@
 package topwords;
 
-
-
 import java.util.HashMap;
 
 
-
-
 public class WordCloud {
-    private int howmany, minlength, lastnwords;
+    private int howmany;
 
     HashMap<String, Integer> cloud;
 
-    public WordCloud (int howmany, int minlength, int lastnwords) {
+    public WordCloud (int howmany, int lastnwords) {
         this.howmany = howmany;
-        this.minlength = minlength;
-        this.lastnwords = lastnwords;
 
         cloud = new HashMap(lastnwords / 3);
     }
@@ -30,11 +24,25 @@ public class WordCloud {
     }
 
     public void removeOrDecrement (String w) {
+        Integer count = cloud.get(w);
+        if (count > 1)
+            cloud.put(w, count - 1);
+        else
+            cloud.remove(w);
 
     }
 
     public String getOutputString() {
-
-        return "";
+        String outputString = "";
+        StringBuilder sb = new StringBuilder(outputString);
+        cloud
+                .entrySet()
+                .stream()
+                .sorted((x, y) ->
+                        y.getValue().compareTo(x.getValue()))
+                .limit(howmany)
+                .forEach(x -> sb.append(x.getKey() + ": " + x.getValue() + " "));
+        outputString = sb.toString();
+        return outputString;
     }
 }
