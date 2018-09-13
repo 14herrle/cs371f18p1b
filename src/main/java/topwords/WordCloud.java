@@ -42,7 +42,7 @@ public class WordCloud {
                         y.getValue().compareTo(x.getValue()))
                 .limit(howmany)
                 .forEach(x -> sb.append(x.getKey() + ": " + x.getValue() + " "));
-        outputString = sb.toString();
+        outputString = sb.toString() + "   Words in Cloud: " + cloud.size();
         return outputString;
     }
 }

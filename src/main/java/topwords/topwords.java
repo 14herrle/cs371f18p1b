@@ -23,6 +23,8 @@ public class topwords {
 
             } catch (NumberFormatException ex) {
                 i = 4;
+            } catch (IndexOutOfBoundsException ob) {
+                i = 4;
             }
             i++;
         }
@@ -36,7 +38,7 @@ public class topwords {
 
         WordCloud c = new WordCloud(howmany, lastnwords);
         WordQueue q = new WordQueue();
-        Scanner inputStream = new Scanner(System.in).useDelimiter("(?U)[^\\p{Alpha}0-9']+");
+        Scanner inputStream = new Scanner(System.in).useDelimiter("(?U)[^\\p{L}0-9']+");
         try {
             int count = 0;
             while (inputStream.hasNext()) {
