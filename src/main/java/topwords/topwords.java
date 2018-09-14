@@ -47,7 +47,7 @@ public class topwords {
                 if (s.length() >= minlength) {
                     q.addWord(s.toUpperCase());
                     c.insertOrIncrement(s.toUpperCase());
-                    if (q.getQueueSize() == lastnwords) {
+                    if (q.getQueueSize() == lastnwords + 1) {
                         c.removeOrDecrement(q.removeWord());
                         if(count == outputDelay || !inputStream.hasNext()) {
                             System.out.println(c.getOutputString());
