@@ -20,6 +20,10 @@ This build is a work in progress
 * Automated unit testing with JUnit
 * Continuous integration with Travis
 
+# Extra Credit Features Implemented
+* Optional 4th input argument for printout frequency added
+* Case insensitive input supported
+
 # System requirements
 
 * Java 8 SDK or later
