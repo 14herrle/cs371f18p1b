@@ -10,6 +10,7 @@ object topwords {
           return
         case _: ArrayIndexOutOfBoundsException =>
           println("ERROR: too many arguments supplied")
+          return
       }
     }
     val howMany = param(0)
@@ -18,5 +19,6 @@ object topwords {
     val outputDelay = param(3)
 
     val cloud = new WordCloud(howMany, minLength, lastNWords, outputDelay)
+    cloud.handleInput
   }
 }
