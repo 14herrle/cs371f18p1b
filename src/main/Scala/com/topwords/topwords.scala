@@ -1,3 +1,5 @@
+package com.topwords
+
 object topwords {
   def main(args: Array[String]) {
     val param = Array(10, 6, 1000, 0)
