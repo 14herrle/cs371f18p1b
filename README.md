@@ -1,10 +1,7 @@
-# cs371f18p1a Topwords
+# cs371f18p1b Topwords
 
 @author Alejandro Herrle
 
-This build is a work in progress
-
-    # Learning Objectives
 
 * Transition from imperative object-oriented and scripting languages to Scala ("Scala as a better Java")
 * Functional versus nonfunctional requirements
@@ -17,8 +14,8 @@ This build is a work in progress
     * test-driven development (TDD)
 * Experience with Git source code management
 * Building with SBT
-* Automated unit testing with JUnit
-* Continuous integration with Travis
+* Automated unit testing with ScalaTest
+*
 
 # Extra Credit Features Implemented
 * Optional 4th input argument for printout frequency added
@@ -27,6 +24,7 @@ This build is a work in progress
 # System requirements
 
 * Java 8 SDK or later
+* Scala 1.2.1
 * [SBT](https://www.scala-sbt.org/1.x/docs/Setup.html)
 
 # Running the Application
@@ -37,7 +35,7 @@ On Linux or Mac OS X:
 
 or
 
-    $ sbt 'run arg1 arg2 arg3'
+    $ sbt 'run arg1 arg2 arg3 arg4'
 	
 On Windows:
 	

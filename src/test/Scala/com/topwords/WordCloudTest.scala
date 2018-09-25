@@ -94,4 +94,23 @@ class WordCloudTest extends WordSpec {
     }
   }
 
+  "An input" when {
+    "input" should {
+      "proccess inputs" in {
+        val it: Iterator[String] = Iterator("a", "number", "of", "words", "for", "me", "to", "test", "this")
+        val ct = new WordCloud(3, 2, 3, 1)
+        val count = ct.processWords(it, false)
+        while (it.hasNext) {
+          val w = it.next()
+          if (w.length < ct.minLength) {
+            assert(!c.cloud.keySet.contains(w.toUpperCase))
+          } else {
+            assert(c.cloud.keySet.contains(w.toUpperCase))
+          }
+        }
+        assert(count == 1)
+      }
+    }
+  }
+
 }

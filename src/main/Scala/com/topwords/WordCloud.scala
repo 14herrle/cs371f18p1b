@@ -15,18 +15,18 @@ class WordCloud(val howMany: Int, val minLength: Int, val lastNWords: Int, val o
     try {
       val lines = scala.io.Source.stdin.getLines
       val words = lines.flatMap(_.split("(?U)[^\\p{Alpha}0-9']+"))
-      processWords(words)
+      processWords(words, false)
     } catch {
       case _: UnmappableCharacterException =>
     }
   }
-  def processWords(words: Iterator[String]) = {
-    var count = 0
+  def processWords(words: Iterator[String], suppressOutput: Boolean): Int = {
+    var count = outputDelay
     for (word <- words) {
       queue.add(word.toUpperCase, this)
       if (queue.getQueueSize == lastNWords) {
         if (count == outputDelay) {
-          println(getOutputString)
+          if (!suppressOutput) { println(getOutputString); }
           count = 0
         } else {
           count += 1
@@ -34,9 +34,10 @@ class WordCloud(val howMany: Int, val minLength: Int, val lastNWords: Int, val o
         removeOrDecrement(queue.remove)
       }
     }
-    if (count != 0) {
+    if (count != 0 && !suppressOutput) {
       println(getOutputString)
     }
+    count
   }
 
   def insertOrIncrement(word: String): Unit = {
@@ -52,32 +53,7 @@ class WordCloud(val howMany: Int, val minLength: Int, val lastNWords: Int, val o
       cloud.update(word, count - 1)
     }
   }
-  /*
-  def actuallyWorkingQuickSort(xs: Array[(String, Int)]): Array[(String, Int)] = {
-    def swap(i: Int, j: Int) = {
-      val t = xs(i); xs(i) = xs(j); xs(j) = t;
-    }
-    def sort1(l: Int, r: Int): Any = {
-      val pivot = (xs((l + r) / 2)_2);
-      var i = l;
-      var j = r;
-      while (i <= j) {
-        while ((xs(i)_2) > pivot) { i = i + 1 }
-        while ((xs(j)_2) < pivot) { j = j - 1 }
-        if (i <= j) {
-          swap(i, j);
-          i = i + 1;
-          j = j - 1;
-        }
-      }
-      if (l < j) sort1(l, j);
-      if (j < r) sort1(i, r);
 
-    }
-    sort1(0, xs.length - 1);
-    xs
-  }
-  */
   def getOutputString: String = {
     val sb = StringBuilder.newBuilder
     //val t1 = cloud.toArray
