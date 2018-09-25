@@ -47,6 +47,8 @@ class WordCloud(val howMany: Int, val minLength: Int, val lastNWords: Int, val o
       cloud.update(word, (count - 1))
     }
   }
+
+  /* Rest In Peace Hacked Together Bubble Sort. Your Contributions Will Not Be Forgotton
   def dumBubbleSort(a: Array[(String, Int)]): Array[(String, Int)] = {
     for (i <- 0 until a.length) {
       for (j <- 0 until a.length - 1) {
@@ -59,11 +61,37 @@ class WordCloud(val howMany: Int, val minLength: Int, val lastNWords: Int, val o
     }
     a
   }
+  */
+
+  def actuallyWorkingQuickSort(xs: Array[(String, Int)]): Array[(String, Int)] = {
+    def swap(i: Int, j: Int) = {
+      val t = xs(i); xs(i) = xs(j); xs(j) = t;
+    }
+    def sort1(l: Int, r: Int): Any = {
+      val pivot = (xs((l + r) / 2)_2);
+      var i = l;
+      var j = r;
+      while (i <= j) {
+        while ((xs(i)_2) > pivot) { i = i + 1 }
+        while ((xs(j)_2) < pivot) { j = j - 1 }
+        if (i <= j) {
+          swap(i, j);
+          i = i + 1;
+          j = j - 1;
+        }
+      }
+      if (l < j) sort1(l, j);
+      if (j < r) sort1(i, r);
+
+    }
+    sort1(0, xs.length - 1);
+    xs
+  }
 
   def getOutputString: String = {
     val sb = StringBuilder.newBuilder
     val t1 = cloud.toArray
-    dumBubbleSort(t1)
+    actuallyWorkingQuickSort(t1)
     for (i <- 0 until t1.length) {
       if (i < howMany) {
         val s1 = t1(i) _1
