@@ -12,6 +12,7 @@ class WordCloud(val howMany: Int, val minLength: Int, val lastNWords: Int, val o
   def handleInput = { //TODO: Make this testable
     import sun.misc.Signal
     Signal.handle(new Signal("INT"), _ => scala.sys.exit())
+
     try {
       val lines = scala.io.Source.stdin.getLines
       val words = lines.flatMap(_.split("(?U)[^\\p{Alpha}0-9']+"))
@@ -27,14 +28,14 @@ class WordCloud(val howMany: Int, val minLength: Int, val lastNWords: Int, val o
       if (queue.getQueueSize == lastNWords) {
         if (count == outputDelay) {
           if (!suppressOutput) { println(getOutputString); }
-          count = 0
+          count = 1
         } else {
           count += 1
         }
         removeOrDecrement(queue.remove)
       }
     }
-    if (count != 0 && !suppressOutput) {
+    if (count != 1 && !suppressOutput) {
       println(getOutputString)
     }
     count
